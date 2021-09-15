@@ -18,14 +18,47 @@ int lcm(int a, int b)
     return a * b / gcd(a, b);
 }
 
+int count_primes(int n)
+{
+    vector<bool> aera(n + 1, true);
+
+    int count = 0;
+
+    for (int i = 2; i <= n; i++)
+    {
+        if (aera[i])
+            count++;
+
+        for (int j = i; j <= n; j += i)
+            aera[j] = false;
+    }
+
+    return count;
+}
+
 bool isPrime(int n)
 {
     if (n <= 1)
         return false;
 
+    vector<bool> aera(sqrt(n), false);
+
     for (int i = 2; i * i <= n; i++)
+    {
+        if (aera[i])
+            continue;
         if (n % i == 0)
+        {
             return false;
+        }
+        else
+        {
+            for (int j = i; j < aera.size(); j += i)
+            {
+                aera[j] = true;
+            }
+        }
+    }
 
     return true;
 }
