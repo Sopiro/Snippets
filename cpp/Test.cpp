@@ -9,11 +9,15 @@ int main(void)
     // for (auto &a : r)
     //     cout << a << endl;
 
-    vector<int> v = {10, 7, 1, 3, 8, 9, 2, 2, 4};
+    vector<int> v = {5, 9, 1, 2, 4};
+    // vector<int> t = {999, 999, 999};
 
-    bubble(v);
+    // bubble(v, true);
+    merge(v, true);
 
-    for(int i = 0; i < v.size(); i++)
+    // copy(t.begin(), t.end(), v.begin()+3);
+
+    for (int i = 0; i < v.size(); i++)
     {
         cout << v[i] << " ";
     }
