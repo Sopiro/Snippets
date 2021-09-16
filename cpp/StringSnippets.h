@@ -4,17 +4,44 @@
 #include <string>
 #include <iostream>
 #include <unordered_set>
+#include <sstream>
 
 using namespace std;
 
-vector<string> split(string s)
+vector<string> ssplit(string s, char delimiter)
+{
+    vector<string> res;
+    stringstream ss(s);
+
+    string line;
+    while(getline(ss, line, delimiter))
+        res.push_back(line);
+
+    return res;
+}
+
+vector<string> ssplit_n(string s)
+{
+    vector<string> res;
+    stringstream ss(s);
+
+    string tmp;
+    while(ss >> tmp)
+        res.push_back(tmp);
+
+    return res;
+}
+
+vector<string> split(string s, string delimiter)
 {
     vector<string> tokens;
     int idx = 0;
 
-    while ((idx = s.find(" ")) != string::npos)
+    while ((idx = s.find(delimiter)) != string::npos)
     {
-        tokens.push_back(s.substr(0, idx));
+        string token = s.substr(0, idx);
+        if(token.size() != 0)
+            tokens.push_back(token);
         s.erase(0, idx + 1);
     }
     tokens.push_back(s);

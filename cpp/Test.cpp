@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    auto r = split("aa bb cc");
+    auto r = ssplit_n("aa,  a   ,   s, d,a, ,,,dbb cc");
 
     for (auto &a : r)
         cout << a << endl;
