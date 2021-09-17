@@ -32,7 +32,7 @@ int main(void)
     // insertion(v, true);
     cout << "original: " << join(v, " ") << endl;
 
-    quick(v, false);
+    quick_clean(v);
 
     cout << "result:" << join(v, " ") << endl;
 

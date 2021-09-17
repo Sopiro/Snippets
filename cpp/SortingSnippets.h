@@ -132,11 +132,7 @@ void merge(vector<int> &v, bool verbose = false)
     _merge(v, 0, v.size() - 1, verbose);
 }
 
-void _quick(vector<int> &v, bool verbose = false)
-{
-}
-
-void partition(vector<int> &v, int left, int right, bool verbose = false)
+void _quick(vector<int> &v, int left, int right, bool verbose = false)
 {
     int len = right - left + 1;
 
@@ -165,9 +161,9 @@ void partition(vector<int> &v, int left, int right, bool verbose = false)
 
     while (rp >= lp)
     {
-        while (v[lp] < pivot_val && (rp >= lp))
+        while (v[lp] < pivot_val)
             lp++;
-        while (v[rp] >= pivot_val && (rp >= lp))
+        while (v[rp] >= pivot_val)
             rp--;
 
         if (verbose)
@@ -195,12 +191,47 @@ void partition(vector<int> &v, int left, int right, bool verbose = false)
         cout << "\t" << join(v) << endl;
     }
 
-    partition(v, left, rp, verbose);
-    partition(v, lp + 1, right, verbose);
+    _quick(v, left, rp, verbose);
+    _quick(v, lp + 1, right, verbose);
 }
 
 void quick(vector<int> &v, bool verbose = false)
 {
     srand(time(NULL));
-    partition(v, 0, v.size() - 1, verbose);
+    _quick(v, 0, v.size() - 1, verbose);
+}
+
+void _quick_clean(vector<int> &v, int left, int right)
+{
+    if (right <= left)
+        return;
+
+    int pivot = v[(right + left) / 2];
+    swap(v[(right + left) / 2], v[right]);
+
+    int lp = left;
+    int rp = right - 1;
+
+    while (rp >= lp)
+    {
+        while (v[lp] < pivot)
+            lp++;
+        while (v[rp] >= pivot)
+            rp--;
+
+        if (lp > rp)
+            break;
+        else
+            std::swap(v[lp], v[rp]);
+    }
+
+    std::swap(v[lp], v[right]);
+    _quick_clean(v, left, rp);
+    _quick_clean(v, lp + 1, right);
+}
+
+void quick_clean(vector<int> &v)
+{
+    srand(time(NULL));
+    _quick_clean(v, 0, v.size() - 1);
 }
