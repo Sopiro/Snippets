@@ -7,6 +7,30 @@
 
 using namespace std;
 
+void selection(vector<int> &v, bool verbose = false)
+{
+    for (int i = 0; i < v.size() - 1; i++)
+    {
+        int ptr_min = i;
+
+        for (int j = i + 1; j < v.size(); j++)
+        {
+            if (v[j] < v[ptr_min])
+            {
+                ptr_min = j;
+            }
+        }
+
+        if (verbose)
+        {
+            cout << "iteration " << i + 1 << ": ";
+            cout << "swap (" << i << " <-> " << ptr_min << ")" << endl;
+        }
+
+        swap(v[ptr_min], v[i]);
+    }
+}
+
 void bubble(vector<int> &v, bool verbose = false)
 {
     for (int i = 0; i < v.size() - 1; i++)

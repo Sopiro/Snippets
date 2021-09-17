@@ -10,12 +10,10 @@ int main(void)
     //     cout << a << endl;
 
     vector<int> v = {5, 9, 1, 2, 4};
-    // vector<int> t = {999, 999, 999};
 
     // bubble(v, true);
-    merge(v, true);
-
-    // copy(t.begin(), t.end(), v.begin()+3);
+    // merge(v, true);
+    selection(v, true);
 
     cout << join(v, " ") << endl;
 
