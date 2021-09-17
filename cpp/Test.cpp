@@ -9,11 +9,12 @@ int main(void)
     // for (auto &a : r)
     //     cout << a << endl;
 
-    vector<int> v = {5, 9, 1, 2, 4};
+    vector<int> v = {1, 2, 3, 0, 4};
 
     // bubble(v, true);
     // merge(v, true);
-    selection(v, true);
+    // selection(v, true);
+    insertion(v, true);
 
     cout << join(v, " ") << endl;
 

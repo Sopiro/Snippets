@@ -7,6 +7,29 @@
 
 using namespace std;
 
+void insertion(vector<int> &v, bool verbose)
+{
+    int ptr = 0;
+    for (int i = 1; i < v.size(); i++, ptr++)
+    {
+        ptr = i - 1;
+        int target = i;
+
+        if (verbose)
+            cout << "iteration " << i - 1 << ": ";
+
+        while (ptr >= 0 && v[ptr] > v[target])
+        {
+            if (verbose)
+                cout << "swap(" << ptr << "<->" << target << ") ";
+
+            swap(v[ptr--], v[target--]);
+        }
+        if (verbose)
+            cout << endl;
+    }
+}
+
 void selection(vector<int> &v, bool verbose = false)
 {
     for (int i = 0; i < v.size() - 1; i++)

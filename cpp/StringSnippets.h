@@ -50,7 +50,7 @@ vector<string> split(string s, string delimiter)
 }
 
 template <typename T>
-string join(vector<T> sv, string delimiter)
+string join(vector<T> sv, string delimiter = " ")
 {
     string res;
 
