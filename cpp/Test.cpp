@@ -17,10 +17,7 @@ int main(void)
 
     // copy(t.begin(), t.end(), v.begin()+3);
 
-    for (int i = 0; i < v.size(); i++)
-    {
-        cout << v[i] << " ";
-    }
+    cout << join(v, " ") << endl;
 
     return 0;
 }

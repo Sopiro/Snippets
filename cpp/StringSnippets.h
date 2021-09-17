@@ -14,7 +14,7 @@ vector<string> ssplit(string s, char delimiter)
     stringstream ss(s);
 
     string line;
-    while(getline(ss, line, delimiter))
+    while (getline(ss, line, delimiter))
         res.push_back(line);
 
     return res;
@@ -26,7 +26,7 @@ vector<string> ssplit_n(string s)
     stringstream ss(s);
 
     string tmp;
-    while(ss >> tmp)
+    while (ss >> tmp)
         res.push_back(tmp);
 
     return res;
@@ -40,7 +40,7 @@ vector<string> split(string s, string delimiter)
     while ((idx = s.find(delimiter)) != string::npos)
     {
         string token = s.substr(0, idx);
-        if(token.size() != 0)
+        if (token.size() != 0)
             tokens.push_back(token);
         s.erase(0, idx + 1);
     }
@@ -49,14 +49,15 @@ vector<string> split(string s, string delimiter)
     return tokens;
 }
 
-string join(vector<string> sv, string delimiter)
+template <typename T>
+string join(vector<T> sv, string delimiter)
 {
     string res;
 
     for (auto it = sv.begin(); it != sv.end() - 1; it++)
-        res += *it + " ";
+        res += to_string(*it) + " ";
 
-    return res + sv.back();
+    return res + to_string(sv.back());
 }
 
 void replaceAll(string &s, string from, string to)
