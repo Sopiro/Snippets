@@ -50,14 +50,14 @@ vector<string> split(string s, string delimiter)
 }
 
 template <typename T>
-string join(vector<T> sv, string delimiter = " ")
+string join(vector<T> sv, string delimiter = " ", string header = "[", string trailer = "]")
 {
-    string res;
+    string res = header;
 
     for (auto it = sv.begin(); it != sv.end() - 1; it++)
         res += to_string(*it) + " ";
 
-    return res + to_string(sv.back());
+    return res + to_string(sv.back()) + trailer;
 }
 
 void replaceAll(string &s, string from, string to)

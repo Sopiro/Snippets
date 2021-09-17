@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <cmath>
+#include <ctime>
 
 using namespace std;
 
@@ -129,4 +130,77 @@ void _merge(vector<int> &v, int left, int right, bool verbose = false)
 void merge(vector<int> &v, bool verbose = false)
 {
     _merge(v, 0, v.size() - 1, verbose);
+}
+
+void _quick(vector<int> &v, bool verbose = false)
+{
+}
+
+void partition(vector<int> &v, int left, int right, bool verbose = false)
+{
+    int len = right - left + 1;
+
+    if (len < 2)
+        return;
+
+    int pivot_ptr = left + (rand() % len);
+    int pivot_val = v[pivot_ptr];
+
+    if (verbose)
+    {
+        cout << "partitioning (" << left << " " << right << ") " << join(v) << endl;
+        cout << "\tpivot value: " << pivot_val << endl;
+    }
+
+    swap(v[pivot_ptr], v[right]);
+
+    if (verbose)
+        cout << "\tpivot moved to back: " << join(v) << endl;
+
+    int lp = left;
+    int rp = right - 1;
+
+    if (verbose)
+        cout << "\tlp:" << lp << " rp:" << rp << endl;
+
+    while (rp >= lp)
+    {
+        while (v[lp] < pivot_val && (rp >= lp))
+            lp++;
+        while (v[rp] >= pivot_val && (rp >= lp))
+            rp--;
+
+        if (verbose)
+            cout << "\tlp:" << lp << " rp:" << rp << endl;
+        if (lp > rp)
+        {
+            if (verbose)
+                cout << "\tpartioning done" << endl;
+            break;
+        }
+        else
+        {
+            if (verbose)
+                cout << "\tswap (" << lp << " <-> " << rp << ") ";
+            std::swap(v[lp], v[rp]);
+            if (verbose)
+                cout << join(v) << endl;
+        }
+    }
+
+    std::swap(v[lp], v[right]);
+    if (verbose)
+    {
+        cout << "\tpivot moved to correct: " << join(v) << endl;
+        cout << "\t" << join(v) << endl;
+    }
+
+    partition(v, left, rp, verbose);
+    partition(v, lp + 1, right, verbose);
+}
+
+void quick(vector<int> &v, bool verbose = false)
+{
+    srand(time(NULL));
+    partition(v, 0, v.size() - 1, verbose);
 }

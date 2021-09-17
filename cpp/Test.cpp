@@ -9,14 +9,32 @@ int main(void)
     // for (auto &a : r)
     //     cout << a << endl;
 
-    vector<int> v = {1, 2, 3, 0, 4};
+    // len = 6
+    vector<int> v = {
+        7,
+        3,
+        4,
+        2,
+        5,
+        1,
+        123,
+        -132,
+        120,
+        2,
+        1,
+        5,
+        6,
+        8};
 
     // bubble(v, true);
     // merge(v, true);
     // selection(v, true);
-    insertion(v, true);
+    // insertion(v, true);
+    cout << "original: " << join(v, " ") << endl;
 
-    cout << join(v, " ") << endl;
+    quick(v, false);
+
+    cout << "result:" << join(v, " ") << endl;
 
     return 0;
 }
