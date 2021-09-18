@@ -1,3 +1,5 @@
+'use strict'
+
 class Bitmap
 {
     constructor(width, height)
