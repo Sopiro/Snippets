@@ -11,7 +11,12 @@ int main(void)
     cout << "original: " << join(v, " ") << endl;
 
     heapify(v);
-
+    cout << "result:" << join(v, " ") << endl;
+    cout << popHeap(v) << endl;
+    cout << "result:" << join(v, " ") << endl;
+    insertHeap(v, 1001);
+    cout << "result:" << join(v, " ") << endl;
+    heapSort(v);
     cout << "result:" << join(v, " ") << endl;
 
     return 0;

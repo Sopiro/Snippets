@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cmath>
 #include <ctime>
+#include <stack>
 
 using namespace std;
 
@@ -264,4 +265,35 @@ void heapify(vector<int> &v)
 {
     for (int ptr = v.size() / 2 - 1; ptr >= 0; ptr--)
         _heapify(v, ptr);
+}
+
+void insertHeap(vector<int> &v, int value)
+{
+    v.push_back(value);
+    heapify(v);
+}
+
+int popHeap(vector<int> &v)
+{
+    int value = v.front();
+    v[0] = v.back();
+    v.pop_back();
+
+    _heapify(v, 0);
+
+    return value;
+}
+
+void heapSort(vector<int> &v)
+{
+    stack<int> stk;
+    
+    while (v.size() > 0)
+        stk.push(popHeap(v));
+
+    while(!stk.empty())
+    {
+        v.push_back(stk.top());
+        stk.pop();
+    }
 }
