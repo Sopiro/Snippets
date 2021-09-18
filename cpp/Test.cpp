@@ -3,8 +3,6 @@
 #include "Sortings.h"
 #include "Searchs.h"
 
-#include <algorithm>
-
 int main(void)
 {
     vector<int> v = {1, 3, 5, 2, 4, 8, 6, 7, 9};

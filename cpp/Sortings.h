@@ -282,20 +282,6 @@ int popHeap(vector<int> &v)
     return value;
 }
 
-void heapSort(vector<int> &v)
-{
-    stack<int> stk;
-
-    while (v.size() > 0)
-        stk.push(popHeap(v));
-
-    while (!stk.empty())
-    {
-        v.push_back(stk.top());
-        stk.pop();
-    }
-}
-
 bool _isHeap(vector<int> &v, int start)
 {
     int left_child = 2 * start + 1;
@@ -313,7 +299,7 @@ bool _isHeap(vector<int> &v, int start)
 
     if (max_ptr != start)
         return false;
-    else 
+    else
         return true;
 }
 
@@ -326,4 +312,21 @@ bool isHeap(vector<int> &v)
     }
 
     return true;
+}
+
+void heapSort(vector<int> &v)
+{
+    if (!isHeap(v))
+        heapify(v);
+
+    stack<int> stk;
+
+    while (v.size() > 0)
+        stk.push(popHeap(v));
+
+    while (!stk.empty())
+    {
+        v.push_back(stk.top());
+        stk.pop();
+    }
 }
