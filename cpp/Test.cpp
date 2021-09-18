@@ -1,7 +1,7 @@
-#include "StringSnippets.h"
-#include "NumericSnippets.h"
-#include "SortingSnippets.h"
-#include "SearchSnippets.h"
+#include "Strings.h"
+#include "Numerics.h"
+#include "Sortings.h"
+#include "Searchs.h"
 
 #include <algorithm>
 
