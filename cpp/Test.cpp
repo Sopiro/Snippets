@@ -3,41 +3,16 @@
 #include "SortingSnippets.h"
 #include "SearchSnippets.h"
 
+#include <algorithm>
+
 int main(void)
 {
-    // auto r = ssplit_n("aa,  a   ,   s, d,a, ,,,dbb cc");
-
-    // for (auto &a : r)
-    //     cout << a << endl;
-
-    // len = 6
-    vector<int> v = {
-        7,
-        3,
-        4,
-        2,
-        5,
-        1,
-        123,
-        -132,
-        120,
-        2,
-        1,
-        5,
-        6,
-        8};
-
-    // bubble(v, true);
-    // merge(v, true);
-    // selection(v, true);
-    // insertion(v, true);
+    vector<int> v = {1, 3, 5, 2, 4, 8, 6, 7, 9};
     cout << "original: " << join(v, " ") << endl;
 
-    quick_clean(v);
+    heapify(v);
 
     cout << "result:" << join(v, " ") << endl;
-
-    cout << binarySearch(v, 1) << endl;
 
     return 0;
 }

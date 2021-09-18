@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void insertion(vector<int> &v, bool verbose)
+void insertionSort(vector<int> &v, bool verbose)
 {
     int ptr = 0;
     for (int i = 1; i < v.size(); i++, ptr++)
@@ -31,7 +31,7 @@ void insertion(vector<int> &v, bool verbose)
     }
 }
 
-void selection(vector<int> &v, bool verbose = false)
+void selectionSort(vector<int> &v, bool verbose = false)
 {
     for (int i = 0; i < v.size() - 1; i++)
     {
@@ -55,7 +55,7 @@ void selection(vector<int> &v, bool verbose = false)
     }
 }
 
-void bubble(vector<int> &v, bool verbose = false)
+void bubbleSort(vector<int> &v, bool verbose = false)
 {
     for (int i = 0; i < v.size() - 1; i++)
     {
@@ -72,7 +72,7 @@ void bubble(vector<int> &v, bool verbose = false)
     }
 }
 
-void _merge(vector<int> &v, int left, int right, bool verbose = false)
+void _mergeSort(vector<int> &v, int left, int right, bool verbose = false)
 {
     int mid = (left + right) / 2;
 
@@ -86,8 +86,8 @@ void _merge(vector<int> &v, int left, int right, bool verbose = false)
         return;
     }
 
-    _merge(v, left, mid, verbose);
-    _merge(v, mid + 1, right, verbose);
+    _mergeSort(v, left, mid, verbose);
+    _mergeSort(v, mid + 1, right, verbose);
 
     if (verbose)
     {
@@ -127,12 +127,12 @@ void _merge(vector<int> &v, int left, int right, bool verbose = false)
     std::copy(res.begin(), res.end(), v.begin() + left);
 }
 
-void merge(vector<int> &v, bool verbose = false)
+void mergeSort(vector<int> &v, bool verbose = false)
 {
-    _merge(v, 0, v.size() - 1, verbose);
+    _mergeSort(v, 0, v.size() - 1, verbose);
 }
 
-void _quick(vector<int> &v, int left, int right, bool verbose = false)
+void _quickSort(vector<int> &v, int left, int right, bool verbose = false)
 {
     int len = right - left + 1;
 
@@ -191,17 +191,17 @@ void _quick(vector<int> &v, int left, int right, bool verbose = false)
         cout << "\t" << join(v) << endl;
     }
 
-    _quick(v, left, rp, verbose);
-    _quick(v, lp + 1, right, verbose);
+    _quickSort(v, left, rp, verbose);
+    _quickSort(v, lp + 1, right, verbose);
 }
 
-void quick(vector<int> &v, bool verbose = false)
+void quickSort(vector<int> &v, bool verbose = false)
 {
     srand(time(NULL));
-    _quick(v, 0, v.size() - 1, verbose);
+    _quickSort(v, 0, v.size() - 1, verbose);
 }
 
-void _quick_clean(vector<int> &v, int left, int right)
+void _quickSort_clean(vector<int> &v, int left, int right)
 {
     if (right <= left)
         return;
@@ -226,12 +226,42 @@ void _quick_clean(vector<int> &v, int left, int right)
     }
 
     std::swap(v[lp], v[right]);
-    _quick_clean(v, left, rp);
-    _quick_clean(v, lp + 1, right);
+    _quickSort_clean(v, left, rp);
+    _quickSort_clean(v, lp + 1, right);
 }
 
-void quick_clean(vector<int> &v)
+void quickSort_clean(vector<int> &v)
 {
     srand(time(NULL));
-    _quick_clean(v, 0, v.size() - 1);
+    _quickSort_clean(v, 0, v.size() - 1);
+}
+
+void _heapify(vector<int> &v, int start)
+{
+    int left_child = 2 * start + 1;
+    int right_child = 2 * start + 2;
+
+    // if this node has no children
+    if (left_child >= v.size() && right_child >= v.size())
+        return;
+
+    int parent = (start - 1) / 2;
+
+    int max_ptr = start;
+    if (right_child < v.size() && v[right_child] > v[max_ptr])
+        max_ptr = right_child;
+    if (v[left_child] > v[max_ptr])
+        max_ptr = left_child;
+
+    if (max_ptr != start)
+    {
+        swap(v[start], v[max_ptr]);
+        _heapify(v, max_ptr);
+    }
+}
+
+void heapify(vector<int> &v)
+{
+    for (int ptr = v.size() / 2 - 1; ptr >= 0; ptr--)
+        _heapify(v, ptr);
 }
