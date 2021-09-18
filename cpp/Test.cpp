@@ -37,7 +37,7 @@ int main(void)
 
     cout << "result:" << join(v, " ") << endl;
 
-    cout << binarySearch(v, 100) << endl;
+    cout << binarySearch(v, 1) << endl;
 
     return 0;
 }
