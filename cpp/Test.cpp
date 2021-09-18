@@ -1,6 +1,7 @@
 #include "StringSnippets.h"
 #include "NumericSnippets.h"
 #include "SortingSnippets.h"
+#include "SearchSnippets.h"
 
 int main(void)
 {
@@ -35,6 +36,8 @@ int main(void)
     quick_clean(v);
 
     cout << "result:" << join(v, " ") << endl;
+
+    cout << binarySearch(v, 100) << endl;
 
     return 0;
 }
