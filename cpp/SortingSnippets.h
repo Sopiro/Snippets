@@ -246,8 +246,6 @@ void _heapify(vector<int> &v, int start)
     if (left_child >= v.size() && right_child >= v.size())
         return;
 
-    int parent = (start - 1) / 2;
-
     int max_ptr = start;
     if (right_child < v.size() && v[right_child] > v[max_ptr])
         max_ptr = right_child;
@@ -287,13 +285,45 @@ int popHeap(vector<int> &v)
 void heapSort(vector<int> &v)
 {
     stack<int> stk;
-    
+
     while (v.size() > 0)
         stk.push(popHeap(v));
 
-    while(!stk.empty())
+    while (!stk.empty())
     {
         v.push_back(stk.top());
         stk.pop();
     }
+}
+
+bool _isHeap(vector<int> &v, int start)
+{
+    int left_child = 2 * start + 1;
+    int right_child = 2 * start + 2;
+
+    // if this node has no children
+    if (left_child >= v.size() && right_child >= v.size())
+        return true;
+
+    int max_ptr = start;
+    if (right_child < v.size() && v[right_child] > v[max_ptr])
+        max_ptr = right_child;
+    if (v[left_child] > v[max_ptr])
+        max_ptr = left_child;
+
+    if (max_ptr != start)
+        return false;
+    else 
+        return true;
+}
+
+bool isHeap(vector<int> &v)
+{
+    for (int ptr = v.size() / 2 - 1; ptr >= 0; ptr--)
+    {
+        if (!_isHeap(v, ptr))
+            return false;
+    }
+
+    return true;
 }
