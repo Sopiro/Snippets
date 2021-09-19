@@ -1,7 +1,7 @@
 #include "Strings.h"
 #include "Numerics.h"
 #include "Sortings.h"
-#include "Searchs.h"
+#include "Searchings.h"
 
 int main(void)
 {
