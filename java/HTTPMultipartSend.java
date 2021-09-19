@@ -12,7 +12,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Map;
 
-class Analyzer {
+class HTTPMultipartSend {
     private static final String BOUNDARY = "boundary";
     private static final String DOUBLE_DASH = "--";
     private static final String LINE_FEED = "\r\n";
@@ -20,12 +20,11 @@ class Analyzer {
     private static final int TIMEOUT = 5000;
     private static final int BUFFER_SIZE = 1024;
 
-    private static final String SERVER_URL = "http://server.url:5000/rest";
+    private static final String SERVER_URL = "http://server.url:port/rest";
 
-    /* 
-        file: 보낼 파일
-        mode: url 뒤에 붙을 rest api route
-        subData: form-data content로 전송되어질 Key, Data pair
+    /*
+     * file: 보낼 파일 mode: url 뒤에 붙을 rest api route subData: form-data content로 전송되어질
+     * Key, Data pair
      */
     String sendFile(File file, String mode, Map<String, String> subData) {
         try {
