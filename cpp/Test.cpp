@@ -5,7 +5,7 @@
 
 int main(void)
 {
-    vector<int> v = {1, 9};
+    vector<int> v = {1, 9, 5, 2, 3, 7, 8, 0};
     cout << "original: " << join(v, " ") << endl;
     // cout << "isHeap: " << isHeap(v) << endl;
 
@@ -21,6 +21,8 @@ int main(void)
     // cout << "result:" << join(v, " ") << endl;
 
     cout << quick_select(v, 1) << endl;
+
+    cout << linear_search(v, 3) << endl;
 
     return 0;
 }

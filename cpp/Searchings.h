@@ -6,6 +6,15 @@
 
 using namespace std;
 
+int linear_search(vector<int> &v, int n)
+{
+    for (int i = 0; i < v.size(); i++)
+        if (v[i] == n)
+            return i;
+
+    return -1;
+}
+
 int _quick_select(vector<int> v, int n, int left, int right)
 {
     int mid = (right + left) / 2;
