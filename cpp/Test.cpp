@@ -1,28 +1,61 @@
-#include "Strings.h"
-#include "Numerics.h"
-#include "Sortings.h"
-#include "Searchings.h"
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+#include <memory>
+
+using namespace std;
+
+class Test
+{
+public:
+    Test()
+    {
+        cout << "Test 생성자" << endl;
+    }
+    ~Test()
+    {
+        cout << "Test 소멸자" << endl;
+    }
+};
+
+class Cat
+{
+public:
+    string name = "없음";
+
+    Cat()
+    {
+        cout << "Cat 생성자" << endl;
+    }
+
+    ~Cat()
+    {
+        cout << "Cat 소멸자" << endl;
+    }
+
+    void Say()
+    {
+        cout << "내 이름은: " << this->name << endl;
+    }
+
+private:
+    Test t;
+};
+
+void foo(unique_ptr<Cat> c)
+{
+    c->Say();
+}
 
 int main(void)
 {
-    vector<int> v = {1, 9, 5, 2, 3, 7, 8, 0};
-    cout << "original: " << join(v, " ") << endl;
-    // cout << "isHeap: " << isHeap(v) << endl;
-
-    // heapify(v);
-    // cout << "result:" << join(v, " ") << endl;
-    // cout << "isHeap: " << isHeap(v) << endl;
-
-    // cout << popHeap(v) << endl;
-    // cout << "result:" << join(v, " ") << endl;
-    // insertHeap(v, 1001);
-    // cout << "result:" << join(v, " ") << endl;
-    // heapSort(v);
-    // cout << "result:" << join(v, " ") << endl;
-
-    cout << quick_select(v, 1) << endl;
-
-    cout << linear_search(v, 3) << endl;
+    cout << "전" << endl;
+    {
+        unique_ptr<Cat> c = make_unique<Cat>();
+        foo(move(c));
+    }
+    cout << "후" << endl;
 
     return 0;
 }
